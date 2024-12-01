@@ -1,0 +1,324 @@
+[gd_scene load_steps=13 format=3 uid="uid://duu08cxdp8i7d"]
+
+[ext_resource type="PackedScene" uid="uid://dnxw5epdjxyt1" path="res://actors/vicotry_defeat_ui.tscn" id="1_s3jly"]
+[ext_resource type="Script" path="res://actors/cannon.gd" id="3_poly0"]
+[ext_resource type="Texture2D" uid="uid://b1e43d6vd6c8k" path="res://triangle.png" id="4_pncrq"]
+[ext_resource type="Script" path="res://actors/goal_peggle.gd" id="5_d6do2"]
+[ext_resource type="PackedScene" uid="uid://c1m6v05ff3qs2" path="res://actors/goal.tscn" id="5_we80a"]
+[ext_resource type="Script" path="res://actors/wall.gd" id="6_2gxyg"]
+[ext_resource type="Texture2D" uid="uid://bqaqn2i4fohkg" path="res://Sphere.png" id="6_wycet"]
+[ext_resource type="PackedScene" uid="uid://ceoy76bxgbc3u" path="res://levels/peggle/blue_peggle.tscn" id="8_024et"]
+[ext_resource type="Texture2D" uid="uid://yahlhwbotla" path="res://levels/peggle/peggle_bg.jpg" id="8_e3gxy"]
+[ext_resource type="PackedScene" uid="uid://8jspagr5kc5n" path="res://levels/peggle/orange_peggle.tscn" id="9_tltqo"]
+
+[sub_resource type="Curve2D" id="Curve2D_q283y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2350, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrp3o"]
+radius = 25.0
+
+[node name="Peggle" type="Node2D"]
+
+[node name="VicotryDefeatUi" parent="." node_paths=PackedStringArray("goal", "cannon") instance=ExtResource("1_s3jly")]
+goal = NodePath("../Path2D/PathFollow2D/Goal")
+cannon = NodePath("../Cannon")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1537, 714)
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Cannon" type="Node2D" parent="." node_paths=PackedStringArray("goal")]
+position = Vector2(1537, 65)
+rotation = 1.5708
+script = ExtResource("3_poly0")
+goal = NodePath("../Path2D/PathFollow2D/Goal")
+power = 200
+max_angle = 180
+ball_bounce = 0.8
+
+[node name="Sprite2D" type="Sprite2D" parent="Cannon"]
+texture = ExtResource("4_pncrq")
+
+[node name="Endpoint" type="Marker2D" parent="Cannon"]
+position = Vector2(50, -1)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(350, 1332)
+curve = SubResource("Curve2D_q283y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotates = false
+
+[node name="Goal" parent="Path2D/PathFollow2D" groups=["Walls"] instance=ExtResource("5_we80a")]
+position = Vector2(0, 0)
+script = ExtResource("5_d6do2")
+speed = 200
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Row1" type="Node2D" parent="Walls"]
+position = Vector2(735, 385)
+
+[node name="Sphere1" type="RigidBody2D" parent="Walls/Row1" groups=["Walls"]]
+position = Vector2(-200, 0)
+freeze = true
+script = ExtResource("6_2gxyg")
+impact_magnitude = 10
+min_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+max_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Row1/Sphere1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wycet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Row1/Sphere1"]
+shape = SubResource("CircleShape2D_nrp3o")
+
+[node name="Label" type="Label" parent="Walls/Row1/Sphere1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sphere" parent="Walls/Row1" instance=ExtResource("8_024et")]
+
+[node name="Sphere2" parent="Walls/Row1" instance=ExtResource("9_tltqo")]
+position = Vector2(200, 0)
+
+[node name="Sphere3" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(400, 0)
+
+[node name="Sphere4" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(600, 0)
+
+[node name="Sphere5" parent="Walls/Row1" instance=ExtResource("9_tltqo")]
+position = Vector2(800, 0)
+
+[node name="Sphere6" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(1000, 0)
+
+[node name="Sphere7" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(1200, 0)
+
+[node name="Sphere8" parent="Walls/Row1" instance=ExtResource("9_tltqo")]
+position = Vector2(1400, 0)
+
+[node name="Sphere9" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(1600, 0)
+
+[node name="Sphere10" parent="Walls/Row1" instance=ExtResource("9_tltqo")]
+position = Vector2(1800, 0)
+
+[node name="Sphere11" parent="Walls/Row1" instance=ExtResource("8_024et")]
+position = Vector2(2000, 0)
+
+[node name="Row2" type="Node2D" parent="Walls"]
+position = Vector2(658, 617)
+
+[node name="Sphere1" type="RigidBody2D" parent="Walls/Row2" groups=["Walls"]]
+position = Vector2(-200, 0)
+freeze = true
+script = ExtResource("6_2gxyg")
+impact_magnitude = 10
+min_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+max_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Row2/Sphere1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wycet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Row2/Sphere1"]
+shape = SubResource("CircleShape2D_nrp3o")
+
+[node name="Label" type="Label" parent="Walls/Row2/Sphere1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sphere" parent="Walls/Row2" instance=ExtResource("8_024et")]
+
+[node name="Sphere2" parent="Walls/Row2" instance=ExtResource("9_tltqo")]
+position = Vector2(200, 0)
+
+[node name="Sphere3" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(400, 0)
+
+[node name="Sphere4" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(600, 0)
+
+[node name="Sphere5" parent="Walls/Row2" instance=ExtResource("9_tltqo")]
+position = Vector2(800, 0)
+
+[node name="Sphere6" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(1000, 0)
+
+[node name="Sphere7" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(1200, 0)
+
+[node name="Sphere8" parent="Walls/Row2" instance=ExtResource("9_tltqo")]
+position = Vector2(1400, 0)
+
+[node name="Sphere9" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(1600, 0)
+
+[node name="Sphere10" parent="Walls/Row2" instance=ExtResource("9_tltqo")]
+position = Vector2(1800, 0)
+
+[node name="Sphere11" parent="Walls/Row2" instance=ExtResource("8_024et")]
+position = Vector2(2000, 0)
+
+[node name="Row3" type="Node2D" parent="Walls"]
+position = Vector2(735, 832)
+
+[node name="Sphere1" type="RigidBody2D" parent="Walls/Row3" groups=["Walls"]]
+position = Vector2(-200, 0)
+freeze = true
+script = ExtResource("6_2gxyg")
+impact_magnitude = 10
+min_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+max_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Row3/Sphere1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wycet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Row3/Sphere1"]
+shape = SubResource("CircleShape2D_nrp3o")
+
+[node name="Label" type="Label" parent="Walls/Row3/Sphere1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sphere" parent="Walls/Row3" instance=ExtResource("8_024et")]
+
+[node name="Sphere2" parent="Walls/Row3" instance=ExtResource("9_tltqo")]
+position = Vector2(200, 0)
+
+[node name="Sphere3" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(400, 0)
+
+[node name="Sphere4" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(600, 0)
+
+[node name="Sphere5" parent="Walls/Row3" instance=ExtResource("9_tltqo")]
+position = Vector2(800, 0)
+
+[node name="Sphere6" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(1000, 0)
+
+[node name="Sphere7" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(1200, 0)
+
+[node name="Sphere8" parent="Walls/Row3" instance=ExtResource("9_tltqo")]
+position = Vector2(1400, 0)
+
+[node name="Sphere9" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(1600, 0)
+
+[node name="Sphere10" parent="Walls/Row3" instance=ExtResource("9_tltqo")]
+position = Vector2(1800, 0)
+
+[node name="Sphere11" parent="Walls/Row3" instance=ExtResource("8_024et")]
+position = Vector2(2000, 0)
+
+[node name="Row4" type="Node2D" parent="Walls"]
+position = Vector2(658, 1064)
+
+[node name="Sphere1" type="RigidBody2D" parent="Walls/Row4" groups=["Walls"]]
+position = Vector2(-200, 0)
+freeze = true
+script = ExtResource("6_2gxyg")
+impact_magnitude = 10
+min_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+max_speed_color = Color(0.662745, 0.14902, 0.0627451, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Row4/Sphere1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wycet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Row4/Sphere1"]
+shape = SubResource("CircleShape2D_nrp3o")
+
+[node name="Label" type="Label" parent="Walls/Row4/Sphere1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sphere" parent="Walls/Row4" instance=ExtResource("8_024et")]
+
+[node name="Sphere2" parent="Walls/Row4" instance=ExtResource("9_tltqo")]
+position = Vector2(200, 0)
+
+[node name="Sphere3" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(400, 0)
+
+[node name="Sphere4" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(600, 0)
+
+[node name="Sphere5" parent="Walls/Row4" instance=ExtResource("9_tltqo")]
+position = Vector2(800, 0)
+
+[node name="Sphere6" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(1000, 0)
+
+[node name="Sphere7" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(1200, 0)
+
+[node name="Sphere8" parent="Walls/Row4" instance=ExtResource("9_tltqo")]
+position = Vector2(1400, 0)
+
+[node name="Sphere9" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(1600, 0)
+
+[node name="Sphere10" parent="Walls/Row4" instance=ExtResource("9_tltqo")]
+position = Vector2(1800, 0)
+
+[node name="Sphere11" parent="Walls/Row4" instance=ExtResource("8_024et")]
+position = Vector2(2000, 0)
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1546, 726)
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("8_e3gxy")

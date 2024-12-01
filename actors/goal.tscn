@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1m6v05ff3qs2"]
+
+[ext_resource type="Script" path="res://actors/goal.gd" id="1_a12e8"]
+[ext_resource type="Texture2D" uid="uid://bqaqn2i4fohkg" path="res://Sphere.png" id="2_b6jwj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdfey"]
+radius = 50.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygvn7"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Goal" type="RigidBody2D"]
+position = Vector2(389, 324)
+freeze = true
+max_contacts_reported = 1
+script = ExtResource("1_a12e8")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("2_b6jwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jdfey")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "None"
+label_settings = SubResource("LabelSettings_ygvn7")
+horizontal_alignment = 1
+vertical_alignment = 1

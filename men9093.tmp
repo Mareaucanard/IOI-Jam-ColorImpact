@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqt5vq6wjro5i"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_lk71k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_os6gl"]
+font_size = 25
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lk71k")
+
+[node name="Level1" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -176.0
+offset_right = 47.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play level 1"
+
+[node name="Level2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -125.0
+offset_right = 47.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play level 2"
+
+[node name="Help" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -80.0
+offset_right = 22.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Help"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -31.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit"
+
+[node name="Help text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -102.5
+offset_right = 255.0
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "The goal of the game is to hit the goal with enough impact.
+Bouncing on walls the ball hasn't hit before gives you more speed.
+
+Use left and right arrows to steer the canon.
+Press space to fire.
+Press r to restart a level.
+Press escape to return to the main menu
+
+
+Lake and mountain background provided by LSky
+"
+label_settings = SubResource("LabelSettings_os6gl")
+horizontal_alignment = 1
+
+[node name="Exit help text" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -208.0
+offset_right = 47.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit help"
+
+[connection signal="pressed" from="Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Exit help text" to="." method="_on_exit_help_text_pressed"]

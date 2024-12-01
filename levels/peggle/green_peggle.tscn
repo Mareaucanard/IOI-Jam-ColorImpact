@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://yqj1bw37a4lx"]
+
+[ext_resource type="Script" path="res://actors/wall.gd" id="1_riyn4"]
+[ext_resource type="Texture2D" uid="uid://bqaqn2i4fohkg" path="res://Sphere.png" id="2_rmsvt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrp3o"]
+radius = 25.0
+
+[node name="Sphere" type="RigidBody2D" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_riyn4")
+impact_magnitude = 10
+min_speed_color = Color(0.65098, 0.0117647, 0.592157, 1)
+max_speed_color = Color(0.65098, 0.0117647, 0.592157, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rmsvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nrp3o")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2

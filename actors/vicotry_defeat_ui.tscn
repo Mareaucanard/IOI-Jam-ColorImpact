@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnxw5epdjxyt1"]
+
+[ext_resource type="Script" path="res://actors/vicotry_defeat_ui.gd" id="1_1crjs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u52wy"]
+font_size = 200
+outline_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3vdb"]
+font_size = 40
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_1crjs")
+
+[node name="Vicotry" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Label" parent="Vicotry"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Vicotry!"
+label_settings = SubResource("LabelSettings_u52wy")
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="Vicotry"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 30.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholde with a very long text to show an example with overflow"
+label_settings = SubResource("LabelSettings_w3vdb")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Defeat" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Label" parent="Defeat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Defeat..."
+label_settings = SubResource("LabelSettings_u52wy")
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="Defeat"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 30.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Better luck next time
+Press r to retry."
+label_settings = SubResource("LabelSettings_w3vdb")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3

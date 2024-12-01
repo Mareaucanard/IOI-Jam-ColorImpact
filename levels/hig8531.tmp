@@ -1,0 +1,432 @@
+[gd_scene load_steps=11 format=3 uid="uid://u2augwntg4q4"]
+
+[ext_resource type="Script" path="res://levels/wall.gd" id="1_oqvuq"]
+[ext_resource type="Texture2D" uid="uid://b4vkduo2q8lft" path="res://white_square.png" id="2_2p5f8"]
+[ext_resource type="PackedScene" uid="uid://c1m6v05ff3qs2" path="res://actors/goal.tscn" id="3_15vfu"]
+[ext_resource type="PackedScene" uid="uid://dnxw5epdjxyt1" path="res://actors/vicotry_defeat_ui.tscn" id="4_23um1"]
+[ext_resource type="Script" path="res://levels/cannon.gd" id="5_vyxnk"]
+[ext_resource type="Texture2D" uid="uid://b1e43d6vd6c8k" path="res://triangle.png" id="6_0iu20"]
+[ext_resource type="Script" path="res://levels/highwayCamera.gd" id="7_3rv6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joecq"]
+size = Vector2(500, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jrpke"]
+font_size = 30
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n267g"]
+size = Vector2(430, 50)
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 215)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("7_3rv6x")
+
+[node name="VicotryDefeatUi" parent="Camera2D" node_paths=PackedStringArray("goal", "cannon") instance=ExtResource("4_23um1")]
+follow_viewport_enabled = true
+goal = NodePath("../../Goal")
+cannon = NodePath("../../Cannon")
+
+[node name="Cannon" type="Node2D" parent="." node_paths=PackedStringArray("goal")]
+position = Vector2(-50, 215)
+script = ExtResource("5_vyxnk")
+goal = NodePath("../Goal")
+power = 600
+min_angle = -90
+
+[node name="Sprite2D" type="Sprite2D" parent="Cannon"]
+texture = ExtResource("6_0iu20")
+
+[node name="Endpoint" type="Marker2D" parent="Cannon"]
+position = Vector2(50, -1)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Set" type="Node2D" parent="Walls"]
+position = Vector2(200, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set2" type="Node2D" parent="Walls"]
+position = Vector2(700, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set2" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set2/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set2/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set2/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set2" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set2/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set2/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set2/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set3" type="Node2D" parent="Walls"]
+position = Vector2(1200, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set3" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set3/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set3/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set3/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set3" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set3/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set3/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set3/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set4" type="Node2D" parent="Walls"]
+position = Vector2(1700, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set4" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set4/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set4/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set4/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set4" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set4/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set4/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set4/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set5" type="Node2D" parent="Walls"]
+position = Vector2(2200, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set5" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set5/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set5/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set5/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set5" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set5/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set5/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set5/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set6" type="Node2D" parent="Walls"]
+position = Vector2(2700, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set6" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set6/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set6/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set6/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set6" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set6/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set6/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set6/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set7" type="Node2D" parent="Walls"]
+position = Vector2(3200, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set7" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set7/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set7/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set7/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set7" groups=["Walls"]]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set7/Lower"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set7/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set7/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Set8" type="Node2D" parent="Walls"]
+position = Vector2(3700, 25)
+
+[node name="Upper" type="RigidBody2D" parent="Walls/Set8" groups=["Walls"]]
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set8/Upper"]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set8/Upper"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set8/Upper"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Lower" type="RigidBody2D" parent="Walls/Set8"]
+position = Vector2(0, 380)
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Set8/Lower" groups=["Walls"]]
+scale = Vector2(500, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Set8/Lower"]
+shape = SubResource("RectangleShape2D_joecq")
+
+[node name="Label" type="Label" parent="Walls/Set8/Lower"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="EndOfTheRoad" type="RigidBody2D" parent="Walls" groups=["Walls"]]
+position = Vector2(3976, 215)
+rotation = 1.5708
+freeze = true
+script = ExtResource("1_oqvuq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/EndOfTheRoad"]
+scale = Vector2(430, 50)
+texture = ExtResource("2_2p5f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EndOfTheRoad"]
+shape = SubResource("RectangleShape2D_n267g")
+
+[node name="Label" type="Label" parent="Walls/EndOfTheRoad"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_jrpke")
+
+[node name="Goal" parent="." instance=ExtResource("3_15vfu")]
+position = Vector2(3825, 203)
+max_expected_speed = 5000.0
+min_speed_color = Color(0.211765, 0.0196078, 0.0196078, 1)
+max_speed_color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[connection signal="fired" from="Cannon" to="Camera2D" method="_on_cannon_fired"]
+[connection signal="got_reset" from="Cannon" to="Camera2D" method="_on_cannon_got_reset"]

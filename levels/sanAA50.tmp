@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://u2augwntg4q4"]
+
+[ext_resource type="Script" path="res://levels/cannon.gd" id="1_57krk"]
+[ext_resource type="Texture2D" uid="uid://b1e43d6vd6c8k" path="res://triangle.png" id="2_3mkjg"]
+[ext_resource type="Script" path="res://levels/wall.gd" id="2_lx8o0"]
+[ext_resource type="Texture2D" uid="uid://b4vkduo2q8lft" path="res://white_square.png" id="2_of3j1"]
+[ext_resource type="PackedScene" uid="uid://c1m6v05ff3qs2" path="res://actors/goal.tscn" id="4_13nrc"]
+[ext_resource type="PackedScene" uid="uid://dnxw5epdjxyt1" path="res://actors/vicotry_defeat_ui.tscn" id="6_6j1qd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsin5"]
+size = Vector2(1920, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygvn7"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Ground" type="RigidBody2D" parent="."]
+position = Vector2(124, 427)
+rotation = 0.785398
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_lx8o0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(1920, 50)
+texture = ExtResource("2_of3j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_lsin5")
+
+[node name="Label" type="Label" parent="Ground"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "None"
+
+[node name="Ground2" type="RigidBody2D" parent="."]
+position = Vector2(681, 417)
+rotation = -0.785398
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_lx8o0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground2"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(1920, 50)
+texture = ExtResource("2_of3j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+shape = SubResource("RectangleShape2D_lsin5")
+
+[node name="Label" type="Label" parent="Ground2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "None"
+
+[node name="Ground3" type="RigidBody2D" parent="."]
+position = Vector2(397, 510)
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_lx8o0")
+max_speed_color = Color(0, 0, 0, 1)
+color_override = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground3"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(1920, 50)
+texture = ExtResource("2_of3j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3"]
+shape = SubResource("RectangleShape2D_lsin5")
+
+[node name="Label" type="Label" parent="Ground3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "None"
+label_settings = SubResource("LabelSettings_ygvn7")
+horizontal_alignment = 1
+
+[node name="Goal" parent="." instance=ExtResource("4_13nrc")]
+
+[node name="VicotryDefeatUi" parent="." node_paths=PackedStringArray("ball", "goal") instance=ExtResource("6_6j1qd")]
+ball = NodePath("")
+goal = NodePath("../Goal")
+
+[node name="Cannon" type="Node2D" parent="." node_paths=PackedStringArray("goal")]
+position = Vector2(151, 73)
+rotation = 0.872605
+script = ExtResource("1_57krk")
+goal = NodePath("../Goal")
+power = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="Cannon"]
+texture = ExtResource("2_3mkjg")
+
+[node name="Endpoint" type="Marker2D" parent="Cannon"]
+position = Vector2(50, -1)

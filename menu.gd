@@ -34,6 +34,7 @@ func _on_help_pressed() -> void:
 	$Level2.visible = false
 	$Help.visible = false
 	$Exit.visible = false
+	$Title.visible = false
 	$"Help text".visible = true
 	$"Exit help text".visible = true
 
@@ -42,6 +43,7 @@ func _on_exit_help_text_pressed() -> void:
 	help_state = false
 	$Level1.visible = true
 	$Level2.visible = true
+	$Title.visible = true
 	$Help.visible = true
 	$Exit.visible = true
 	$"Help text".visible = false
